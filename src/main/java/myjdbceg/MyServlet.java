@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MyServlet extends HttpServlet {
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
 		out.println("<html><body><form method=\"POST\">");
 		out.println("<table>");
@@ -62,7 +62,7 @@ public class MyServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
 		out.println("<html><body>");
 		try {
