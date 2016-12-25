@@ -32,21 +32,27 @@ public class MyServlet extends HttpServlet {
 		out.println("<td>");
 		out.println("<input name=\"user\" />");
 		out.println("</td>");
+		out.println("</tr>");
 		
+		out.println("<tr>");
 		out.println("<td>");
 		out.println("password");
 		out.println("</td>");
 		out.println("<td>");
 		out.println("<input name=\"password\" type=\"password\"/>");
 		out.println("</td>");
+		out.println("</tr>");
 		
+		out.println("<tr>");
 		out.println("<td>");
 		out.println("host");
 		out.println("</td>");
 		out.println("<td>");
 		out.println("<input name=\"host\" />");
 		out.println("</td>");
+		out.println("</tr>");
 		
+		out.println("<tr>");
 		out.println("<td>");
 		out.println("port");
 		out.println("</td>");
@@ -102,9 +108,10 @@ public class MyServlet extends HttpServlet {
 	private void showRs(PrintWriter out, ResultSet rs,  String label) throws SQLException {
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columnCount = rsmd.getColumnCount();
+		out.println(label+"<hr/>");
 		out.println("<table>");
 		
-		out.println("<th><td colspan=\""+columnCount+"\">"+label+"</td></th>");
+		//out.println("<th><td colspan=\""+columnCount+"\">"+label+"</td></th>");
 		out.println("<th>");
 		for (int i = 1; i <= columnCount; i++) 
 		{
