@@ -71,6 +71,17 @@ public class MyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
 		out.println("<html><body>");
+		out.println("<head>");
+		out.println("<style>");
+		out.println("table {");
+		out.println("    border-collapse: collapse;");
+		out.println("}");
+		out.println("");
+		out.println("table, td, th {");
+		out.println("    border: 1px solid black;");
+		out.println("}");
+		out.println("</style>");
+		out.println("</head>");
 		try {
 			process(out, req);
 		} catch (Exception e) {
@@ -109,7 +120,7 @@ public class MyServlet extends HttpServlet {
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columnCount = rsmd.getColumnCount();
 		out.println(label+"<hr/>");
-		out.println("<table>");
+		out.println("<table border=\"1\">");
 		
 		//out.println("<th><td colspan=\""+columnCount+"\">"+label+"</td></th>");
 		out.println("<th>");
