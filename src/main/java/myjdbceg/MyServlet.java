@@ -12,10 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+@WebServlet("/Check")
 public class MyServlet extends HttpServlet {
 
 	@Override
@@ -39,8 +40,11 @@ public class MyServlet extends HttpServlet {
 		
 		out.println("processing...........<br/>");
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
-		String url = req.getParameter("url");//"jdbc:mysql://localhost/test?user=minty&password=greatsqldb";
-		Connection conn = DriverManager.getConnection(url );
+		String url = req.getParameter("url");
+		String u=req.getParameter("u");
+		String p=req.getParameter("p");
+		//"jdbc:mysql://localhost/test?user=minty&password=greatsqldb";
+		Connection conn = DriverManager.getConnection(url, u, p );
 		out.println("got connection...........<br/>");
 		DatabaseMetaData md = conn.getMetaData();
 		
