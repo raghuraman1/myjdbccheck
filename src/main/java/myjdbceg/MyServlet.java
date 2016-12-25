@@ -120,7 +120,7 @@ public class MyServlet extends HttpServlet {
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int columnCount = rsmd.getColumnCount();
 		out.println(label+"<hr/>");
-		out.println("<table border=\"1\">");
+		out.println("<table>");
 		
 		//out.println("<th><td colspan=\""+columnCount+"\">"+label+"</td></th>");
 		out.println("<th>");
