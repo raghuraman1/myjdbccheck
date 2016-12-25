@@ -112,6 +112,7 @@ public class MyServlet extends HttpServlet {
 		
 		showRs(out, md.getCatalogs(),  "catalogs");
 		showRs(out, md.getSchemas(),  "schemas");
+		showRs(out, md.getTables(null, null, null, null),  "tables");
 	
 		
 	}
@@ -122,15 +123,15 @@ public class MyServlet extends HttpServlet {
 		out.println(label+"<hr/>");
 		out.println("<table>");
 		
-		//out.println("<th><td colspan=\""+columnCount+"\">"+label+"</td></th>");
-		out.println("<th>");
+		out.println("<tr><th colspan=\""+columnCount+"\">"+label+"</th></tr>");
+		out.println("<tr>");
 		for (int i = 1; i <= columnCount; i++) 
 		{
-			out.println("<td>");
+			out.println("<th>");
 			out.println(rsmd.getColumnName(i));
-			out.println("</td>");
+			out.println("</th>");
 		}
-		out.println("</th>");
+		out.println("</tr>");
 		while(rs.next())
 		{
 			out.println("<tr>");
