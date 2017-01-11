@@ -61,6 +61,16 @@ public class MyServlet extends HttpServlet {
 		out.println("</td>");
 		
 		out.println("</tr>");
+		
+		
+		out.println("<tr>");
+		out.println("<td>");
+		out.println("db name");
+		out.println("</td>");
+		out.println("<td>");
+		out.println("<input name=\"db\" />");
+		out.println("</td>");
+		
 		out.println("</table>");
 
 		out.println("<input type=\"submit\" value=\"submit\"/>");
@@ -101,7 +111,8 @@ public class MyServlet extends HttpServlet {
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		String host = req.getParameter("host");
 		String port = req.getParameter("port");
-		String url="jdbc:mysql://"+host+":"+port;
+		String db = req.getParameter("db");
+		String url="jdbc:mysql://"+host+":"+port+"/"+db;
 		String u=req.getParameter("user");
 		String p=req.getParameter("password");
 		
@@ -112,7 +123,7 @@ public class MyServlet extends HttpServlet {
 		
 		showRs(out, md.getCatalogs(),  "catalogs");
 		showRs(out, md.getSchemas(),  "schemas");
-		showRs(out, md.getTables(null, null, null, null),  "tables");
+		showRs(out, md.getTables(null, null, "%", null),  "tables");
 	
 		
 	}
