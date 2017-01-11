@@ -1,9 +1,6 @@
 package myjdbceg;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -15,20 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-@WebServlet("/Check1")
-@MultipartConfig
-public class MyServlet1 extends HttpServlet {
+@WebServlet("/Check")
+public class MyServlet2 extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
-		out.println("<html><body><form method=\"POST\"  enctype=\"multipart/form-data\">");
+		out.println("<html><body><form method=\"POST\">");
 		out.println("<table>");
 		out.println("<tr>");
 		
@@ -66,15 +60,14 @@ public class MyServlet1 extends HttpServlet {
 		out.println("<input name=\"port\" />");
 		out.println("</td>");
 		
-		out.println("</tr>");
-		
 		out.println("<tr>");
 		out.println("<td>");
-		out.println("file");
+		out.println("sqls");
 		out.println("</td>");
 		out.println("<td>");
-		out.println("<input name=\"file\" type=\"file\"/>");
+		out.println("<textarea name=\"sqls\" rows=\"20\" cols=\"100\"></textarea>");
 		out.println("</td>");
+		
 		out.println("</tr>");
 		out.println("</table>");
 
@@ -109,8 +102,8 @@ public class MyServlet1 extends HttpServlet {
 			out.println("</body></html>");
 		}
 	}
-	
-	private void process(PrintWriter out, HttpServletRequest req) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException, IOException, ServletException {
+
+	private void process(PrintWriter out, HttpServletRequest req) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		
 		out.println("processing...........<br/>");
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -119,17 +112,7 @@ public class MyServlet1 extends HttpServlet {
 		String url="jdbc:mysql://"+host+":"+port;
 		String u=req.getParameter("user");
 		String p=req.getParameter("password");
-		final Part filePart = req.getPart("file");
-	    
-	    
-	    InputStream inputStream = filePart.getInputStream();
-	    InputStreamReader isr= new InputStreamReader(inputStream);
-	    BufferedReader br= new BufferedReader(isr);
-	    for (String line=br.readLine(); line!=null; line=br.readLine()) 
-	    {
-	    	out.println(line+"<br/>");
-		}
-		br.close();
+		
 		Connection conn = DriverManager.getConnection(url, u, p );
 		out.println("got connection...........<br/>");
 		DatabaseMetaData md = conn.getMetaData();

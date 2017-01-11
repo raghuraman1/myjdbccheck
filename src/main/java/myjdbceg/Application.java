@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Bean;
 public class Application {
 	
 	@Bean
-	   public ServletRegistrationBean reg1() {
+	   public ServletRegistrationBean reg() {
 	      ServletRegistrationBean registration = new ServletRegistrationBean(new MyServlet(), "/services");
 	     // registration.addUrlMappings("*.jws");
 	      return registration;
@@ -35,10 +35,17 @@ public class Application {
 	    } 
 	
 	@Bean
-	   public ServletRegistrationBean reg2() {
+	   public ServletRegistrationBean reg1() {
 	      ServletRegistrationBean registration = new ServletRegistrationBean(new MyServlet1(), "/services1");
 	      registration.setMultipartConfig(multipartConfigElement());
 	      // registration.addUrlMappings("*.jws");
+	      return registration;
+	   }
+	
+	@Bean
+	   public ServletRegistrationBean reg2() {
+	      ServletRegistrationBean registration = new ServletRegistrationBean(new MyServlet2(), "/services2");
+	     // registration.addUrlMappings("*.jws");
 	      return registration;
 	   }
 	
