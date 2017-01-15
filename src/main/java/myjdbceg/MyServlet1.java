@@ -22,8 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-@WebServlet("/Check1")
-@MultipartConfig
+
 public class MyServlet1 extends HttpServlet {
 	
 	@Override

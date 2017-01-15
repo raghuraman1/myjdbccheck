@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,9 +125,33 @@ public class MyServlet extends HttpServlet {
 		showRs(out, md.getCatalogs(),  "catalogs");
 		showRs(out, md.getSchemas(),  "schemas");
 		showRs(out, md.getTables(null, null, "%", null),  "tables");
+		showRsForTables(out, md.getTables(null, null, "%", new String[]{"TABLE"}),  "tables", conn);
 	
 		
 	}
+	
+	private void showRsForTables(PrintWriter out, ResultSet rs,  String label, Connection conn) throws SQLException {
+		
+		while(rs.next())
+		{
+			String string = rs.getString("TABLE_NAME");
+			String sql="select * from "+string;
+			try(Statement st = conn.createStatement();)
+			{
+				try(ResultSet sqlrs = st.executeQuery(sql);)
+				{
+					showRs(out, sqlrs, "rows in table "+string);
+				}
+			}
+			
+			
+		}
+		
+		
+				
+		
+	}
+
 
 	private void showRs(PrintWriter out, ResultSet rs,  String label) throws SQLException {
 		ResultSetMetaData rsmd = rs.getMetaData();
