@@ -109,7 +109,7 @@ public class MyServlet extends HttpServlet {
 	private void process(PrintWriter out, HttpServletRequest req) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 		
 		out.println("processing...........<br/>");
-		Class.forName("com.mysql.jdbc.Driver").newInstance();
+		Class.forName("org.postgresql.Driver").newInstance();
 		String host = req.getParameter("host");
 		String port = req.getParameter("port");
 		String db = req.getParameter("db");
